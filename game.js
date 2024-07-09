@@ -1,6 +1,6 @@
 const prompt = require('prompt-sync')(({ sigint: true }));
 const crypto = require('crypto');
-const { printTable, Table } = require('console-table-printer');
+const { Table } = require('console-table-printer');
 const { sha3_256 } = require('js-sha3');
 
 
@@ -82,7 +82,6 @@ function game() {
   console.log(`\nHMAC key: ${secretKey}`);
 
   console.log('\nCheck the results here: https://www.lddgo.net/en/encrypt/hmac \nYou would need the computer response, the HMAC key and the SHA3-256 hash.')
-  console.log(winArray)
 }
 
 function generateTable() {
@@ -111,25 +110,8 @@ function generateTable() {
       ...movesObj
     }, { color: 'custom_red' })
   });
-  
-  const cases = moves.map((move, i) => {
-    let config = {};
-    
-    let movesObj = {};
-    moves.forEach((move, j) => {
-      movesObj[move.toUpperCase()] = winArray[j][i];
-    });
-    
-    config = {
-      'v Computer / User >': move.toUpperCase(), 
-      ...movesObj
-    }
-    
-    return config;
-  })
 
   p.printTable();
 }
-
 
 game();

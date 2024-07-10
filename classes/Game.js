@@ -75,19 +75,19 @@ class Game {
   checkMoves(moves) {
     this.moves = moves;
 
-    if(this.moves.some((move, i) => this.moves.some((m, x) => m === move && i !== x))) {
-      console.log('You have options repeated, please use different options! \n\nExample: node game.js rock paper scissors');
-      return;
-    }
-    
     if(this.moves.length < 3) {
       console.log('You should have at least 3 options to play!\n\nExample: node game.js rock paper scissors');
-      return;
+      process.exit();
+    }
+    
+    if(this.moves.some((move, i) => this.moves.some((m, x) => m === move && i !== x))) {
+      console.log('You have options repeated, please use different options! \n\nExample: node game.js rock paper scissors');
+      process.exit();
     }
     
     if(this.moves.length % 2 === 0) {
       console.log('The moves should be a odd quantity\n\nBad: node game.js rock paper scissors spock\nGood: node game.js rock paper scissors spock lizard');
-      return;
+      process.exit();
     }
   }
 }

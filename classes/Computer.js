@@ -19,6 +19,7 @@ class Computer {
 
   generateHMAC() {
     this.generateSecretKey();
+    console.log(this.secretKey)
     this.hmac = crypto.createHmac('sha3-256', this.secretKey);
     this.hmac.update(this.move);
   }
